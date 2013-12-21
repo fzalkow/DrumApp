@@ -19,18 +19,26 @@ def record_interactive():
         print "Play..."
         audioio.play(AUDIO)
         return 1
-    if myinput == "t":
+        
+    # time-stretch
+    elif myinput == "t":
         print "Factor for stretching (0.5 = double speed, 2.0 = halfe speed)"
         fac = utils.ask_for_number()
         AUDIO = timestretch.simple_stretcher(utils.chunks_to_numpy(AUDIO), float(fac))
         return 1
-    if myinput == "s":
+        
+    # save to disk
+    elif myinput == "s":
         print "Give path for wav file"
         path = raw_input()
         audioio.write_chunks(path, AUDIO)
         return 1
-    if myinput == "q":
+    
+    # quit loop
+    elif myinput == "q":
         return 0
+        
+    # typed non-sense
     else:
         print "You have not typed something correct..."
         return 1
