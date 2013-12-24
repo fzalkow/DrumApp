@@ -9,11 +9,11 @@ def is_number(s):
     except (ValueError, TypeError):
         return False
 
-def ask_for_number():
+def ask_for_number(str=""):
     """ loop for asking the user until he gives a number """
     n = None
     while (not(is_number(n))):
-        n = raw_input()
+        n = raw_input(str)
     return n
 
 def chunks_to_numpy(chunks, dtype="int16"):

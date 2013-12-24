@@ -22,15 +22,13 @@ def record_interactive():
         
     # time-stretch
     elif myinput == "t":
-        print "Factor for stretching (0.5 = double speed, 2.0 = halfe speed)"
-        fac = utils.ask_for_number()
+        fac = utils.ask_for_number("Factor for stretching (0.5 = double speed, 2.0 = halfe speed): ")
         AUDIO = timestretch.simple_stretcher(utils.chunks_to_numpy(AUDIO), float(fac))
         return 1
         
     # save to disk
     elif myinput == "s":
-        print "Give path for wav file"
-        path = raw_input()
+        path = raw_input("Give path for wav file: ")
         audioio.write_chunks(path, AUDIO)
         return 1
     
@@ -53,8 +51,7 @@ def options ():
 
     # record something
     if myinput == "r":
-        print "How many seconds?"
-        secs = utils.ask_for_number()
+        secs = utils.ask_for_number("How many seconds? ")
         AUDIO = audioio.record(float(secs))
 
         record_loop = 1
