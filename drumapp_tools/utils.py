@@ -26,5 +26,4 @@ def numpy_to_chunks(array, chunklen=1024):
     l = len(array)
     chunks = numpy.array_split(array, int(math.ceil(l/float(chunklen))))
     #chunks[-1] = numpy.append(chunks[-1], numpy.zeros(chunklen-len(chunks[-1])))
-    for chunk in chunks: print len(chunk), 
     return map(lambda (chunk): chunk.tostring(), chunks)
