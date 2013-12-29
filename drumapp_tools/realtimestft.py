@@ -59,5 +59,6 @@ def real_time_spectogram (fftsize=2**9):
 		
 		img.setImage(data)
 		pg.QtGui.QApplication.processEvents()
-	# how to really close the pg application??
-	#pg.exit() # causes python to exist
+	app.closeAllWindows()
+	app.exit()
+	app.quit()
