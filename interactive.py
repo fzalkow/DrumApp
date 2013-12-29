@@ -3,6 +3,7 @@
 import drumapp_tools.audioio as audioio
 import drumapp_tools.utils as utils
 import drumapp_tools.timestretch as timestretch
+import drumapp_tools.realtimestft as realtimestft
 
 def record_interactive():
     """ interactive loop to do something with the audio recording:
@@ -46,6 +47,7 @@ def options ():
     """ record or quit """
     global AUDIO
     print "Type R to record audio."
+    print "Type S for a real time spectogram."
     print "Type Q to quit this loop."
     myinput = raw_input().lower()
 
@@ -58,6 +60,11 @@ def options ():
         while (record_loop == 1):
             record_loop = record_interactive()
         return 1
+        
+    # real time stft
+    elif myinput == "s":
+    		realtimestft.real_time_spectogram()
+    		return 1
 
     # quit the loop
     elif myinput == "q":

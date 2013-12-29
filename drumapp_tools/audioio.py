@@ -26,6 +26,24 @@ def record(seconds=3.0, rate=44100, channels=2, format=pyaudio.paInt16, chunk=10
     p.terminate()
 
     return frames
+    
+def record_single_chunk(rate=44100, channels=2, format=pyaudio.paInt16, chunk=1024):
+    """ record audio from mic """
+    p = pyaudio.PyAudio()
+
+    stream = p.open(format=format,
+                    channels=channels,
+                    rate=rate,
+                    input=True,
+                    frames_per_buffer=chunk)
+    
+    data = stream.read(chunk)
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    return data
 
 def play(frames, rate=44100, channels=2, format=pyaudio.paInt16, chunk=1024):
     """ play audio by your speakers """
