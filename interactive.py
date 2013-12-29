@@ -63,8 +63,8 @@ def options ():
         
     # real time stft
     elif myinput == "s":
-    		realtimestft.real_time_spectogram()
-    		return 1
+        realtimestft.real_time_spectogram()
+        return 1
 
     # quit the loop
     elif myinput == "q":
