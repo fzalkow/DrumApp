@@ -35,30 +35,28 @@ def real_time_spectogram (fftsize=2**9):
 	framesize = len(np.fft.rfft(np.zeros(fftsize)))
 	howmanycols = fftsize
 	data = np.zeros((howmanycols, framesize))
-	bordersize = (fftsize-chunksize)/2
 	
 	## Set initial view bounds
 	view.setRange(QtCore.QRectF(0, 0, howmanycols, framesize))
 	
-	# read first data chunk, rest are zeros
-	data1 = data[-2]
-	data2 = data[-1]
-	data3 =  utils.chunks_to_numpy([audioio.record_single_chunk(channels=1, chunk=chunksize)])
+	# initialize first "chunk" is silence
+	data1 = np.zeros(chunksize)
 	
-	# start inifinte loop                    
+	# loop as long as window is not closed              
 	while not win.isHidden():
 	
-		data1 = data2
-		data2 = data3
-		data3 = utils.chunks_to_numpy([audioio.record_single_chunk(channels=1, chunk=chunksize)])
-										
-		new_col = np.abs(np.fft.rfft(
-								np.concatenate((data1[bordersize:], data2, data3[:bordersize]))))
-		
+		# record next chunk
+		data2 = utils.chunks_to_numpy([audioio.record_single_chunk(channels=1, chunk=chunksize)])
+		# compute fft
+		new_col = np.abs(np.fft.rfft(np.append(data1, data2) * np.hamming(fftsize)))
+		# new fft is last column in data to be displayed
 		data = np.append(data[1:], new_col.reshape(1, framesize), axis=0)
 		
+		# display data
 		img.setImage(data)
 		pg.QtGui.QApplication.processEvents()
-	app.closeAllWindows()
-	app.exit()
-	app.quit()
+		
+		# new chunk in this loop pass is the chunk before in next loop pass
+		data2 = data1
+	
+	QtGui.QApplication.quit()
