@@ -2,6 +2,17 @@
 
 This a project for making a learning app for drum students. It is situated in its very beginnings.
 
+## C/C++
+
+At the moment there are the functions `play_from_file` (which plays an existing WAVE file) and `record_to_file` (which records from Default Audio Input and writes it to Disk as WAVE file). It can be compiled with `gcc -o test main.c -lsndfile -lportaudio -include audioio.c`.
+
+## Dependencies
+You need
+- portaudio (http://www.portaudio.com/)
+- libsndfile (http://www.mega-nerd.com/libsndfile/)
+
+## Prototypes in Python
+
 At the moment you can load the Python script `interactive.py` and you'll get in a loop where you can
 - record audio (via PortAudio)
 - play this back (via PortAudio)
@@ -9,7 +20,7 @@ At the moment you can load the Python script `interactive.py` and you'll get in 
 - time-stretch it (simple, pitch-changing, by just interpolating the audio signal)
 - writing it to hard disk
 
-## Dependencies
+### Dependencies
 At the moment you need
 - Python (http://www.python.org/)
 - PyAudio (http://people.csail.mit.edu/hubert/pyaudio/)
