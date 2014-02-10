@@ -6,7 +6,7 @@ This a project for making a learning app for drum students. It is situated in it
 
 At the moment there are the functions `play_from_file` (which plays an existing WAVE file) and `record_to_file` (which records from Default Audio Input and writes it to Disk as WAVE file). It can be compiled with `gcc -o test main.c -lsndfile -lportaudio -include audioio.c`.
 
-## Dependencies
+### Dependencies
 You need
 - portaudio (http://www.portaudio.com/)
 - libsndfile (http://www.mega-nerd.com/libsndfile/)
