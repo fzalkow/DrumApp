@@ -1,6 +1,8 @@
 # Simple Project: Drum learning app
 
-This a project for making a learning app for drum students. It is situated in its very beginnings.
+This a project for making a learning app for drum students.
+
+**Heads up!** This project is folded here and is being continued on [bitbucket](https://bitbucket.org/voocoder/drumapp)!
 
 ## C/C++
 
